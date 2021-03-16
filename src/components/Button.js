@@ -8,16 +8,16 @@ class Button extends React.Component {
   // Same as writing Button.contextType = LanguageContext
   // static contextType = LanguageContext;
 
-  renderSubmit(value) {
-    return value === "english" ? "Submit" : "Lähetä";
+  renderSubmit(language) {
+    return language === "english" ? "Submit" : "Lähetä";
   }
 
   renderButton(color) {
     return (
       <button className={`ui button ${color}`}>
-        {/* To get value out of context object we pass in single function as a child to Consumer component. The function will be called with the current value that is in the context pipe. In this case the value parent App uses Provider to provide  */}
+        {/* To get value out of context object we pass in single function as a child to Consumer component. The function will be called with the current value that is in the context pipe. In this case the value parent App uses Provider to provide. Destructure language property from Context object.  */}
         <LanguageContext.Consumer>
-          {(value) => this.renderSubmit(value)}
+          {({ language }) => this.renderSubmit(language)}
         </LanguageContext.Consumer>
       </button>
     );
